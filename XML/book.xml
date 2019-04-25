@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE book SYSTEM "book.dtd">
+
+<booklist>
+	<book isbn="a1">
+		<title>홍구와 &amp; 길동이</title>
+		<author>
+			<name>김저자</name>
+			<tel>010-1234-1234</tel>
+			<address>서울</address>
+		</author>
+		<publisher>은행나무출판사</publisher>
+		<price>30000</price>
+
+	</book>
+
+	<book isbn="a2" kind="잡지">
+		<title>해리포터</title>
+		<author>
+			<writer sex="남">김민영</writer>
+			<tel>010-1234-1111</tel>
+			<address>서울</address>
+		</author>
+		<publisher>가지나무</publisher>
+		<price>50000</price>
+
+	</book>
+
+	<book isbn="a3" kind="소설">
+		<title>안녕 &amp; 잘가</title>
+		<author>
+			<name>홍당무</name>
+			<tel>010-1111-2222</tel>
+			<address>인천</address>
+		</author>
+		<publisher>가나출판</publisher>
+		<price>20000</price>
+
+	</book>
+
+</booklist>
+
