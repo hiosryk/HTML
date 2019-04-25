@@ -1,2 +1,2 @@
-# HTML
-HTML learn in kitri  
+# WEB
+WEB learn in kitri  
