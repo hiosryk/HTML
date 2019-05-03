@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<h1 align="center">form control test</h1>
+
+<table border="1" align="center"  >
+
+<tr>
+	<td>
+		<label for="name">이름</label>
+	</td>
+	<td>
+		<input type="text" id="name" name="name">
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<label for="id">아이디</label>
+	</td>
+	<td>	
+		<input type="text" id="id" name="id">
+		<input type="submit" value="중복확인">
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<label for="pass">비밀번호</label>
+	</td>
+	<td>	
+		<input type="text" id="pass" name="pass">
+	</td>
+</tr>	
+
+<tr>
+	<td>
+		<label for="passck">비밀번호</label>
+	</td>	
+	<td>	
+		<input type="text" id="passck" name="passck">
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<label for="gender">성별</label>
+	</td>	
+	<td>
+		<input type="radio" name="gender" value="m"> 남
+		<input type="radio" name="gender" value="f" checked="checked"> 여
+	</td>
+</tr>
+	
+<tr>	
+	<td colspan="2">
+	<label>좋아하는 과일</label>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2">
+		<input type="checkbox" name="fruit" value="사과">사과
+		<input type="checkbox" name="fruit" value="수박">수박
+		<input type="checkbox" name="fruit" value="딸기">딸기
+		<input type="checkbox" name="fruit" value="포도">포도
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<label for="emailid">이메일</label>
+	</td>
+	<td>	
+	
+		<input type="text" id="emailid" name="emailid">
+		<label for="@">@</label>
+		<select name="emaildown">
+			<option value="naver" selected="selected">네이버
+			<option value="daum">다음
+			<option value="naver">구글
+			<input type="text" id="emaildown" name="emaildown">
+		</select>
+	</td>
+</tr>
+
+<tr>
+	<td>
+		<label for="tel">연락처</label>
+	</td>
+	<td>
+		<select name="tel1">
+			<option value="02" selected="selected">02
+			<option value="010" >010
+			<option value="031" >031
+			<label for="-">-</label>
+		<input type="text" id="tel2" name="tel2">	
+			<label for="-2">-</label>
+					<input type="text" id="tel3" name="tel3">	
+		</select>
+	</td>
+</tr>
+
+<tr>
+	<td colspan="2">
+	<input type="submit" value="회원가입">
+	<input type="submit" value="초기화">
+	
+	</td>
+</tr>
+
+</table>
+
+
+</body>
+</html>

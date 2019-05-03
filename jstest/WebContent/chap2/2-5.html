@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+funtion startTmie(){
+	window.setInterval(showTime,1000);
+	}
+
+function showTime(){
+	var date = new date();
+	var view = document.getElementById("viewtime")
+	view.innerHTML = '<front color="steelblue" size="15">' + date
+
+	window.setInterval(showTime,1000);
+}
+</script>
+</head>
+<body>
+<div id ="viewtime" align="center"></div>
+<button onclick="showTime();">시간작동</button>
+ </body>
+</html>
