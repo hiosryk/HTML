@@ -1,0 +1,54 @@
+**JSP (Java server Page)
+-servlet(*.java) : html in java >>복잡해졋어. 디자인바꿀때 서블릿은 넘 안좋아  
+-jsp(*.jsp) : java in html 
+
+*compile 기반. : servlet(코딩어려워), jsp(run) 
+ script 기반.	 : JSP(최초에한번 서블릿으로 바꿔준다.코딩도쉽고 빠르다.), ASP, PHP
+
+--Script Element : <% java code %>
+1. 선언부 : jsp에서 사용될 변수, 메소드를 선언하는 영역
+	형식) <%! java code %>
+	예)
+	<%!
+	String name;
+	int age;
+	public void setZ() {
+	
+	}
+	%>
+	
+2. 처리부 : jsp가 호출 될 때마다 매번 호출 되는 영역.>> service method
+			request, response 관련..
+	형식) <% java code %>
+	예)
+	<%
+	name = request.getParameter("name");
+	
+	out.println(name);
+	%>
+	
+3. 출력부 : client 출력.
+	형식) <%= 문자열 %>
+	예)<%= name %> == <% out.print(name); %>
+	(name뒤에 ;찍으면안댐.)
+	
+public class ClassName [servlet] {
+
+	 선언부  (변수, 메소드(){})
+
+	public void sevice(request, response) {
+	
+		처리부
+	
+		out.print.ln("")//출력부(표현식)
+	}
+
+}
+
+--directive(지시문) : <%@ 종류 속성="값" 속성2="값2"...속성N="값N" %>
+1.page
+	
+2.include
+
+3.taglib
+
