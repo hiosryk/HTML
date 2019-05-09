@@ -55,6 +55,7 @@ membermvc
 	     member.jsp
 	     registerok.jsp
 	     registerfail.jsp
+	     idcheck
 	     zipsearch.jsp
 	     membermodify.jsp
 	     

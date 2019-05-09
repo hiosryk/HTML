@@ -20,7 +20,7 @@ function login() {
 }
 
 function mvjoin() {
-	document.location.href = "<%=root%>/user/member.jsp";
+	document.location.href = "<%=root%>/user?act=mvjoin";
 }
 </script>
 
