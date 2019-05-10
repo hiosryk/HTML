@@ -13,7 +13,7 @@ public class DBConnection {
 	}
 
 	public static Connection makeConnection() throws SQLException {
-		return DriverManager.getConnection(SiteConstance.DB_URL, SiteConstance.DB_USERNAME, SiteConstance.DB_PASSWORD);
+		return DriverManager.getConnection(SiteConstance.DB_URL, SiteConstance.DB_USERNAME, SiteConstance.DB_PASWORD);
 	}
 	
 }
