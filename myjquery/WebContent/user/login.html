@@ -5,7 +5,11 @@ function login() {
 		data:$("form").serialize(),
 		method:'post',	
 		success:function(result){
-			alert(result.trim());
+			if(result.trim() == '1'){ //성공
+				location.href="/myjquery/semantic.jsp";
+			}else{ //실패
+				alert(result.trim());	
+			}			
 		},
 		error:function( jqXHR, textStatus, errorThrown){
 			alert(errorThrown);
@@ -16,24 +20,10 @@ function login() {
 $(document).ready(function() {
 	var $loginFormObj = $("#loginform");
 	$loginFormObj.submit(login);
-	/* $("#loginBtn").click(function(){
-		$.ajax({
-			url:"/myjquery/login",
-			data:$("form").serialize(),
-			method:'post',	
-			success:function(result){
-				alert(result.trim());
-			},
-			error:function( jqXHR, textStatus, errorThrown){
-				alert(errorThrown);
-			}
-		});
-		return false;
-	}); */
-	$("#moveRegisterBtn").click(function(){
-		$("nav>ul>li>a[href='user/member.html']").trigger("click");
-		return false;
-	})
+	var $registerBtnObj = $("#moveRegisterBtn");//회원가입버튼객체
+	$registerBtnObj.click(function(){
+		$("nav>ul>li>a[href='user/signup.html']").trigger("click");
+	});
 });
 </script>
 <div class="container" align="center">
@@ -52,11 +42,11 @@ $(document).ready(function() {
 				       placeholder="" 
 				       required>
 			</div>
-			
+		
 		</form>
 		<div class="form-group" align="center">
-			<button class="btn btn-warning" form="loginform" id="loginBtn">로그인</button>
-			<button class="btn btn-primary" id="moveRegisterBtn">회원가입</button>
-		</div>
+		  <button class="btn btn-warning" form="loginform" id="loginBtn">로그인</button>
+		  <button class="btn btn-primary" id="moveRegisterBtn">회원가입</button>
+	    </div>
 	</div>
 </div>
