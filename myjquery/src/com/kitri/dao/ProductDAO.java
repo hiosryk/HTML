@@ -9,6 +9,7 @@ import com.kitri.dto.ProductCategory;
 import com.kitri.exception.NotFoundException;
 
 public class ProductDAO {
+	
 	public List<Product> selectAll(){
 		List<Product> list = new ArrayList<>();		
 		Connection con=null;		
@@ -82,8 +83,8 @@ public class ProductDAO {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			//2)DB연결
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			String user = "test";
-			String password = "test";
+			String user = "kitri";
+			String password = "kitri";
 			con = DriverManager.getConnection(url, user, password);
 			//3)SQL송신
 			String selectALLSQL = "SELECT cate_no, cate_name," + 

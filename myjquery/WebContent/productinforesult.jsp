@@ -1,7 +1,8 @@
 <%@page import="com.kitri.dto.Product"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% Product p = (Product)request.getAttribute("product");
+<% 
+   Product p = (Product)request.getAttribute("product");
    String no = p.getProd_no();
 %>
 <style>
@@ -9,23 +10,7 @@
 div.product_view_detail {
     
 }
-div.product_view_detail h4 {
-    font-size: 24px;
-    font-weight: bold;
-    color: #222;
-    border-bottom: 2px solid #333;
-    padding-bottom: 18px;
-    margin-bottom: 20px;
-}
-div.product_view_detail p.t1 {
-    font-size: 16px;
-    color: #444;
-    margin-bottom: 20px;
-    line-height: 1.6;
-    min-height: 40px;
-    vertical-align: baseline;
-    background: transparent;
-}
+
 div.product_view{
     width: 100%;
 }
@@ -45,16 +30,34 @@ div.product_view_detail {
     float: left;
     position: relative;
 }
+
+
+div.product_view_detail h4 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #222;
+    border-bottom: 2px solid #333;
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+}
+div.product_view_detail p.t1 {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 20px;
+    line-height: 1.6;
+    min-height: 40px;
+    vertical-align: baseline;
+    background: transparent;
+}
 div.product_info_content {
     width: 100%;
-    transparent;
-    background: url('http://image.istarbucks.co.kr/common/img/menu/detail_bg.jpg') center 0 repeat-y;
     margin: 20px 0;
+    border-top: 1px solid #ddd;
 }
 div.product_info_content ul {
     margin: 0;
     padding: 0;
-    width: 50%;
+    width: 80%;
     /* width: 100%; */
     float: left;
     list-style: none;
@@ -70,14 +73,20 @@ div.product_info_content ul>li {
 div.product_info_content ul>li>button{
     width: 100%;
 }
+div.product_info_content dl{
+    width: 100%;
+}
 div.product_info_content dl dt {
     float: left;
-    width: 85%;
+    width: 40%;
 }
-
+div.product_info_content li.submit dl dt{
+    float: left;
+    width: 100%;
+}
 div.product_info_content dl dd {
     float: right;
-    width: 15%;
+    width: 45%;
     text-align: right;
 }
 div.product_info_content dl:after {
@@ -85,7 +94,35 @@ div.product_info_content dl:after {
     display: block;
     clear: both;
 }
+
+div.result{
+    display:none;
+}
 </style>
+
+
+<script>
+$(function(){
+	var $bt = $(".submit dl>dt>button");
+	$bt.click(function(){
+		$.ajax({
+		  url:'addcart',
+		  method:'get',
+		  data:
+'no=<%=no%>&quantity='+$("input[name=quantity]").val(),
+		  success:function(result){
+			  //$("section").html(result.trim());
+			  $("div.addcartresult").remove();
+			  $("section").append(result.trim());
+		  }
+		});
+		return false;
+	});
+});
+</script>
+
+
+
 <div class="product_view">
 <div class="product_view_pic">
   <img src="images/<%=no%>.jpg">
@@ -96,6 +133,8 @@ div.product_info_content dl:after {
 신선하게 브루드(Brewed)되어 원두의 다양함이 살아있는 커피
 </p>
 <div class="product_info_content">
+<!-- <form action="addcart" method="get"> -->
+ <input type="hidden" name="no" value="<%=no%>">
 <ul>
 <li class="no">
  <dl><dt>상품번호</dt>
@@ -107,9 +146,11 @@ div.product_info_content dl:after {
      <dd><%=p.getProd_price() %></dd>
 </dl>
 </li>
+
+
 <li class="quantity">
  <dl><dt>수량</dt>
-     <dd><input type="number" name="quantity"></dd>
+     <dd><input type="number" name="quantity" value="1" min="1" max="99"></dd>
 </dl>
 </li>
 <li class="submit">
@@ -117,59 +158,11 @@ div.product_info_content dl:after {
 </dl>
 </li>
 
-
-
-
 </ul>
+<!-- </form> -->
 </div>
 </div>
+<div class="result">
+  <button>계속쇼핑하기</button><button>장바구니보기</button>
 </div>
-<%-- <script src="js/jquery.elevatezoom.js"></script>
-<div class="zoomContainer" 
-     style="transform: translateZ(0px); 
-            position: absolute; 
-            left: 20.4375px; 
-            top: 219px; 
-            height: 419px; 
-            width: 401px;">
-   <div class="zoomLens" 
-        style="background-position: 0px 0px; 
-               float: right; 
-               overflow: hidden; 
-               z-index: 999; 
-               transform: translateZ(0px); 
-               opacity: 0.4; 
-               zoom: 1; 
-               width: 271.789px; 
-               height: 208.609px; 
-               background-color: white; 
-               cursor: default; 
-               border: 1px solid rgb(0, 0, 0); 
-               background-repeat: no-repeat; 
-               position: absolute; 
-               left: 0px; 
-               top: 208px; 
-               display: none;">&nbsp;</div>
-     <div class="zoomWindowContainer" 
-          style="width: 610px;">
-          <div style="overflow: hidden; 
-                      background-position: 0px -521px; 
-                      text-align: center; 
-                      background-color: rgb(255, 255, 255); 
-                      width: 610px; 
-                      height: 468px; 
-                      float: left; 
-                      background-size: 900px 940px; 
-                      z-index: 100; 
-                      border: 4px solid rgb(136, 136, 136); 
-                      background-repeat: no-repeat; 
-                      position: absolute; 
-                      background-image: 
-                      /*url('//image.istarbucks.co.kr/upload/store/skuimg/2015/07/[2]_20150724164439044.jpg'*/
-                      url('images/001.jpg'); 
-                      top: -2px; 
-                      left: 439px; 
-                      display: none;" 
-                      class="zoomWindow">&nbsp;</div>
-    </div>
-</div> --%>
+</div>

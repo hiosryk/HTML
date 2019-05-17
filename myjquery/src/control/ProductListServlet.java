@@ -21,7 +21,7 @@ public class ProductListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Product> list = service.findAll();
 		request.setAttribute("productlist", list);
-		String path = "productlistresult.jsp";
+		String path = "/productlistresult.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(path);
 		rd.forward(request, response);
 	}

@@ -2,6 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <style>
 div.product_list ul > li.menuDataSet{
     float: left;
@@ -38,14 +39,15 @@ $(function(){
 <ul>
 <% List<Product> list = 
          (List)request.getAttribute("productlist");
+
    for(Product p: list){    
 %>
   
     <li class="menuDataSet">
       <dl>
         <dt>
-          <a href="#">          
-            <img src="images/<%=p.getProd_no()%>.jpg" alt="<%=p.getProd_name()%>">
+          <a href="#" >          
+            <img src="images/<%=p.getProd_no()%>.jpg" alt="<%=p.getProd_name()%>이미지입니다">
           </a>
         </dt>
         <dd class="category">카테고리:<span><%=p.getProductCategory().getCate_name() %></span></dd>
