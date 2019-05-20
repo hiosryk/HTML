@@ -10,6 +10,13 @@ $(function(){
 		$("nav>ul>li>a[href=productlist]").trigger("click");
 		return false;
 	});
+	$(arr[1]).click(function(){
+		alert("장바구니보기를 클릭했습니다.");
+		//메뉴중 장바구니보기메뉴찾기
+		//                                강제 클릭이벤트 발생시키기
+		$("nav>ul>li>a[href=viewcart]").trigger("click");
+		return false;
+	});
 });
 </script>    
 <div class="addcartresult"

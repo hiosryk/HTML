@@ -17,8 +17,8 @@ public class CustomerDAO {
 
 			//2)DB연결
 			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-			String user = "kitri";
-			String password = "kitri";
+			String user = "test";
+			String password = "test";
 			con = DriverManager.getConnection(url,user,password);
 
 			//3)SQL구문 DB서버로 송신 :executeQuery()
