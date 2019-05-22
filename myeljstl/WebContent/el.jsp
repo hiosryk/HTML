@@ -22,5 +22,8 @@ ${param.a+10}
 고객이름: <%--=((Customer)request.getAttribute("c")).getName() --%><br>
 고객이름: ${requestScope.c.name}
 
+<hr>
+웹컨텍스트명 : ${pageContext.request.contextPath}
+
 </body>
 </html>

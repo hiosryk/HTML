@@ -106,7 +106,7 @@ $(function(){
 </head>
 <body>
 <header><h1>MOON BUCKS</h1>
-  <!-- <img src="images/original_19.gif"> --></header>
+  <img src="images/original_19.gif"></header>
 <nav>메뉴
 <jsp:include page="menu.jsp"/>
 </nav>
