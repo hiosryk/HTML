@@ -2,17 +2,7 @@ package com.kitri.dto;
 
 import java.util.Date;
 
-public class RepBoard {
-	/*BOARD_SEQ
-PARENT_SEQ
-BOARD_SUBJECT
-BOARD_WRITER
-BOARD_CONTENTS
-BOARD_DATE
-BOARD_PASSWORD
-BOARD_VIEWCOUNT
-	 * 
-	 */
+public class RepBoard {	
 	private int board_seq; //글번호
 	private int parent_seq; //부모글번호:원글-0
 	private String board_subject;//제목
@@ -21,6 +11,7 @@ BOARD_VIEWCOUNT
 	private Date board_date;//작성일자
 	private String board_password;//비번
 	private int board_viewcount;//조회수
+	private int level=1; //노드레벨
 	public RepBoard() {
 		super();
 	}
@@ -115,11 +106,20 @@ BOARD_VIEWCOUNT
 	public void setBoard_viewcount(int board_viewcount) {
 		this.board_viewcount = board_viewcount;
 	}
+	
+	public int getLevel() {
+		return level;
+	}
+	public void setLevel(int level) {
+		this.level = level;
+	}
 	@Override
 	public String toString() {
 		return "RepBoard [board_seq=" + board_seq + ", parent_seq=" + parent_seq + ", board_subject=" + board_subject
 				+ ", board_writer=" + board_writer + ", board_contents=" + board_contents + ", board_date=" + board_date
-				+ ", board_password=" + board_password + ", board_viewcount=" + board_viewcount + "]";
+				+ ", board_password=" + board_password + ", board_viewcount=" + board_viewcount + ", level=" + level
+				+ "]";
 	}
+	
 	
 }

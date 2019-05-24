@@ -52,18 +52,25 @@ public class RepBoardDAO {
 			}
 		}
 	}
-	
+	/**
+	 * @param startRow
+	 * @param endRow
+	 * @return
+	 */
 	public List<RepBoard> selectByRows(int startRow, int endRow){
 		List<RepBoard> list = new ArrayList<>();
-		
-		String selectByRowsSQL = "SELECT board_seq\r\n" + 
-				"FROM (SELECT rownum r, repboard.*\r\n" + 
+		String selectByRowsSQL = "SELECT *\r\n" + 
+				"FROM (SELECT rownum r, "+
+				"             level lev, "+
+				"             repboard.*\r\n" + 
 				"      FROM repboard\r\n" + 
 				"      START WITH parent_seq=0\r\n" + 
-				"      CONNECT BY PRIOR board_seq=parent_seq)\r\n" + 
+				"      CONNECT BY PRIOR board_seq = parent_seq\r\n" + 
+				"      ORDER SIBLINGS BY board_seq DESC)\r\n" + 
 				"WHERE r BETWEEN ? AND ?";
 		Connection con = null;
-		PreparedStatement pstmt =null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		try {
 			//1)JDBC드라이버로드
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -75,22 +82,113 @@ public class RepBoardDAO {
 			pstmt = con.prepareStatement(selectByRowsSQL);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
-			pstmt.executeQuery();
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				//검색결과의 한행의 정보를 RepBoard객체에 대입 
+				RepBoard repBoard = new RepBoard();
+				repBoard.setBoard_seq(rs.getInt("board_seq"));
+				repBoard.setParent_seq(rs.getInt("parent_seq"));
+				repBoard.setBoard_subject(rs.getString("board_subject"));
+				repBoard.setBoard_writer(rs.getString("board_writer"));
+				repBoard.setBoard_contents(rs.getString("board_contents"));
+				repBoard.setBoard_date(rs.getTimestamp("board_date"));
+				repBoard.setBoard_password(rs.getString("board_password"));
+				repBoard.setBoard_viewcount(rs.getInt("board_viewcount"));
+				repBoard.setLevel(rs.getInt("lev"));
+				list.add(repBoard);
+			}			
+		}catch(Exception e) {
+			e.printStackTrace(); 
+		}finally {
+			if(rs != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 		return list;
+	}
+	
+	public int selectTotalCnt() {
+		String selectTotalCntSQL = "SELECT count(*) FROM repboard";
+		int totalCnt = -1;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			//1)JDBC드라이버로드
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			//2)DB연결
+			String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+			String user = "test";
+			String password = "test";
+			con = DriverManager.getConnection(url, user, password);
+			pstmt = con.prepareStatement(selectTotalCntSQL);			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				totalCnt = rs.getInt(1);
+			}
+		}catch(Exception e) {
+			e.printStackTrace(); 
+		}finally {
+			if(rs != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+			if(con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return totalCnt;
 	}
 	public static void main(String[] args) {
 		RepBoardDAO dao = new RepBoardDAO();
-		RepBoard repBoard = new RepBoard();
-		repBoard.setBoard_subject("테스트제목");
-		repBoard.setBoard_writer("test");
-		repBoard.setBoard_contents("테스트내용");
-		repBoard.setBoard_password("testp");
-		//repBoard.setParent_seq(1); //답글쓰기용 테스트
-		try {
-			dao.insert(repBoard); //글쓰기용 테스트
-		} catch (AddException e) {
-			e.printStackTrace();
-		}		
+//		RepBoard repBoard = new RepBoard();
+//		repBoard.setBoard_subject("테스트제목");
+//		repBoard.setBoard_writer("test");
+//		repBoard.setBoard_contents("테스트내용");
+//		repBoard.setBoard_password("testp");
+//		//repBoard.setParent_seq(1); //답글쓰기용 테스트
+//		try {
+//			dao.insert(repBoard); //글쓰기용 테스트
+//		} catch (AddException e) {
+//			e.printStackTrace();
+//		}
+		
+		for(RepBoard repBoard:dao.selectByRows(11, 20)) {
+			System.out.println(repBoard);	
+		}
 	}
-	 
+
+	
 }
